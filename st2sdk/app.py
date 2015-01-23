@@ -22,6 +22,7 @@ import six
 from cmd2 import Cmd
 from cmd2 import options, make_option
 from jinja2 import Environment, FileSystemLoader
+from st2sdk.metagen.cmdmixin import MetagenCmdMixin
 
 __all__ = [
     'SDKApp'
@@ -35,7 +36,13 @@ COMMAND_HELP = {
     'bootstrap': [
         'bootstrap [pack name]',
         'Create initial directory structure for the provided pack.'
+    ],
+    'metagen': [
+        'metagen [pack name] [module name]',
+        'Create initial directory structure for the provided pack. Inspect module and autogenerate'
+        'action metadata.'
     ]
+
 }
 
 DIRECTORY_STRUCTURE = [
@@ -59,15 +66,18 @@ FILE_TEMPLATES = [
 ]
 
 
-class SDKApp(Cmd):
+class SDKApp(Cmd, MetagenCmdMixin):
     into = 'Welcome to st2sdk'
     prompt = '(st2sdk): '
+
+    def __init__(self, *args, **kwargs):
+        # super(SDKApp, self).__init__(*args, **kwargs)
+        Cmd.__init__(self, *args, **kwargs)
+        self._setup_logging()
 
     @options([make_option('-i', '--interactive', action='store_true',
                           help='Run in an interactive mode')])
     def do_bootstrap(self, pack_name, opts=None):
-        self._setup_logging()
-
         if opts.interactive:
             data = self._gather_input(pack_name=pack_name)
         else:
