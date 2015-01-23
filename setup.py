@@ -28,7 +28,7 @@ os.chdir(PKG_ROOT_DIR)
 def get_version_string():
     version = None
     sys.path.insert(0, PKG_ROOT_DIR)
-    from st2bootstrap import __version__
+    from st2sdk import __version__
     version = __version__
     sys.path.pop(0)
     return version
