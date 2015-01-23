@@ -4,14 +4,6 @@ import six
 from cmd2 import options, make_option
 from st2sdk.metagen import metagen
 
-COMMAND_HELP = {
-    'metagen': [
-        'metagen [pack name] [module name]',
-        'Create initial directory structure for the provided pack. Inspect module and autogenerate'
-        'action metadata.'
-    ]
-}
-
 
 class Data(object):
 
@@ -39,9 +31,6 @@ class MetagenCmdMixin(object):
         metagen.main(data)
 
     def help_metagen(self):
-        help_string = COMMAND_HELP['metagen']
-        help_string = '\n'.join(help_string)
-        print(help_string)
         parser = self._get_args_parser_metagen()
         parser.print_help()
 
