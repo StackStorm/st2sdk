@@ -1,0 +1,15 @@
+language: python
+python: 2.7
+sudo: false
+os:
+  - linux
+  - osx
+env:
+  - TOX_ENV=py26
+  - TOX_ENV=py27
+
+install:
+  - pip install tox
+
+script:
+  - tox -e $TOX_ENV
