@@ -1,9 +1,8 @@
+import argparse
 import six
 
-
 from cmd2 import options, make_option
-from st2sdk import metagen
-from st2sdk.metagen.metagen import main as metagen_main
+from st2sdk.metagen import metagen
 
 COMMAND_HELP = {
     'metagen': [
@@ -29,52 +28,22 @@ class Data(object):
 class MetagenCmdMixin(object):
 
     @options([make_option('-i', '--interactive', action='store_true',
-                          help='Run in an interactive mode'),
-              make_option('-c', '--class', action='store', type='string', dest='clss',
-                          help=''),
-              make_option('-g', '--ignore', action='store', type='string', dest='ignore',
-                          help=''),
-              make_option('--dry_run', action='store_true',
-                          help=''),
-              make_option('--prefix', action='store', type='string', dest='prefix',
-                          help=''),
-              make_option('-v', '--version', action='store', type='string', dest='version',
-                          help=''),
-              make_option('--required', action='store', type='string', dest='required',
-                          help=''),
-              make_option('--optional', action='store', type='string', dest='optional',
-                          help=''),
-              make_option('--author', action='store', type='string', dest='author',
-                          help=''),
-              make_option('--email', action='store', type='string', dest='email',
-                          help='')])
-    def do_metagen(self, arg, opts=None):
-        args = arg.split()
-        pack = args[0] if args else None
-        module = args[1] if args else None
+                          help='Run in an interactive mode')])
+    def do_metagen(self, args, opts=None):
         if opts.interactive:
-            data = self._gather_input_metagen(pack, module, opts)
+            data = self._gather_input_metagen()
         else:
-            data = Data()
-            setattr(data, 'pack', pack)
-            setattr(data, 'module', module)
-            setattr(data, 'clss', opts.clss)
-            setattr(data, 'ignore', opts.ignore)
-            setattr(data, 'dry_run', opts.dry_run)
-            setattr(data, 'action_prefix', opts.prefix)
-            setattr(data, 'author', opts.author)
-            setattr(data, 'email', opts.email)
-            setattr(data, 'version', opts.version)
-            setattr(data, 'required', opts.required)
-            setattr(data, 'optional', opts.optional)
-
+            args = args.split()
+            data = self._get_args_parser_metagen().parse_args(args)
         self.do_bootstrap(getattr(data, 'pack'))
-        metagen_main(data)
+        metagen.main(data)
 
     def help_metagen(self):
         help_string = COMMAND_HELP['metagen']
         help_string = '\n'.join(help_string)
         print(help_string)
+        parser = self._get_args_parser_metagen()
+        parser.print_help()
 
     def _gather_input_metagen(self, pack=None, module=None, opts=None):
         data = Data()
@@ -133,3 +102,19 @@ class MetagenCmdMixin(object):
         setattr(data, 'optional', optional)
 
         return data
+
+    def _get_args_parser_metagen(self):
+        parser = argparse.ArgumentParser(
+            description='StackStorm Action Metadata Generator for Python modules')
+        parser.add_argument('--pack', action="store", dest="pack", required=True)
+        parser.add_argument('--module', action="store", dest="module", default=None)
+        parser.add_argument('--class', action="store", dest="clss")
+        parser.add_argument('--ignore', action="store", dest="ignore")
+        parser.add_argument('--dry_run', action="store_true", dest="dry_run")
+        parser.add_argument('--prefix', action="store", dest="action_prefix", default=None)
+        parser.add_argument('--author', action="store", dest="author", default="Estee Tew")
+        parser.add_argument('--email', action="store", dest="email", default="")
+        parser.add_argument('--version', action="store", dest="version", default="0.1")
+        parser.add_argument('--required', action="store", dest='required', default=None)
+        parser.add_argument('--optional', action="store", dest='optional', default=None)
+        return parser
