@@ -1,5 +1,7 @@
 # StackStorm SDK
 
+[![Build Status](https://travis-ci.org/StackStorm/st2sdk.svg)](https://travis-ci.org/StackStorm/st2sdk)
+
 This repository contains different utilities and tools which help with the
 StackStorm integration pack development.
 
