@@ -17,45 +17,6 @@ def parseAdditional(adds):
     return add_dict
 
 
-def create_pack(pack, empty=True):
-    pack_dir = 'output/packs/%s' % pack
-    if os.path.isdir(pack_dir):
-        shutil.rmtree(pack_dir)
-    os.mkdir(pack_dir)
-    os.mkdir("%s/rules" % pack_dir)
-    os.mkdir("%s/sensors" % pack_dir)
-    if empty is False:
-        shutil.copytree('actions', pack_dir + "/actions")
-    else:
-        os.mkdir("%s/actions" % pack_dir)
-
-
-def create_manifest(pack, args):
-    manifest = {}
-    manifest['name'] = pack
-    manifest['description'] = ""
-    manifest['version'] = args.version
-    manifest['author'] = args.author
-    manifest['email'] = args.email
-    fh = open('output/packs/%s/pack.yaml' % pack, 'w')
-    fh.write(yaml.dump(manifest, default_flow_style=False))
-    fh.close()
-
-
-def create_md(pack):
-    readme = open('output/packs/%s/README.md' % pack, 'w')
-    readme.write("%s\n=====" % pack)
-    readme.close()
-
-    changes = open('output/packs/%s/CHANGES.md' % pack, 'w')
-    changes.write("%s\n=====" % pack)
-    changes.close()
-
-    config = open('output/packs/%s/config.yaml' % pack, 'w')
-    config.write("---\n")
-    config.close()
-
-
 def get_all(modpath, ignores, add_required, add_optional):
     items = {}
     pattern = re.compile('[^_].*')
@@ -174,10 +135,6 @@ def main(args):
 
     if args.optional is not None:
         add_optional = parseAdditional(args.optional)
-
-    # create_pack(args.pack, empty=args.empty)
-    # create_manifest(args.pack, args)
-    # create_md(args.pack)
 
     if not args.empty:
         generate_meta(obj, args, ignores, add_required, add_optional)
