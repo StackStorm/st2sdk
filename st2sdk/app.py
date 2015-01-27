@@ -90,7 +90,7 @@ class SDKApp(Cmd, MetagenCmdMixin):
         if not data['pack_name']:
             raise ValueError('Pack name is required')
 
-        self._handle_bootstrap(data=data)
+        return self._handle_bootstrap(data=data)
 
     def help_bootstrap(self):
         help_string = COMMAND_HELP['bootstrap']
@@ -138,6 +138,8 @@ class SDKApp(Cmd, MetagenCmdMixin):
         self._render_and_write_templates(pack_path=pack_path, context=context)
 
         LOG.info('Pack "%s" created in %s' % (pack_name, pack_path))
+
+        return pack_path
 
     def _create_directory_structure(self, pack_path):
         LOG.debug('Creating directory: %s' % (pack_path))

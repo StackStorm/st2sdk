@@ -103,7 +103,8 @@ def generate_meta(obj, args, ignores, add_required, add_optional):
         action_meta['parameters'].update(module_param)
         action_meta['parameters'].update(parameters)
 
-        filename = "output/packs/" + args.pack + "/actions/" + prefix + action + ".yaml"
+        # filename = "output/packs/" + args.pack + "/actions/" + prefix + action + ".yaml"
+        filename = os.path.join(args.pack_path, 'actions', prefix + action + '.yaml')
 
         if not args.dry_run:
             fh = open(filename, 'w')
@@ -136,5 +137,4 @@ def main(args):
     if args.optional is not None:
         add_optional = parseAdditional(args.optional)
 
-    if not args.empty:
-        generate_meta(obj, args, ignores, add_required, add_optional)
+    generate_meta(obj, args, ignores, add_required, add_optional)
