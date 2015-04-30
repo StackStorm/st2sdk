@@ -48,6 +48,7 @@ setup(
     author_email='info@stackstorm.com',
     url='http://www.stackstorm.com',
     packages=find_packages(exclude=['tests']),
+    package_data={'st2sdk': ['templates/*']},
     install_requires=get_requirements(),
     license='Apache License (2.0)',
     classifiers=[
