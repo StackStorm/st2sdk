@@ -77,7 +77,7 @@ st2-check-validate-yaml-file <path to YAML file>
 
 Keep in mind that this script just performs syntax and no semantic checks. If
 you want to confirm that your action or other metadata file is correct, you
-should also run ``register-pack-resources.sh`` script which tries to register
+should also run ``st2-check-register-pack-resources`` script which tries to register
 all the resources in a pack and errors out of registration of a particular
 resource fails.
 
@@ -94,7 +94,7 @@ st2-check-validate-json-file <path to JSON file>
 
 Keep in mind that this script just performs syntax and no semantic checks. If
 you want to confirm that your action or other metadata file is correct, you
-should also run ``register-pack-resources.sh`` script which tries to register
+should also run ``st2-check-register-pack-resources`` script which tries to register
 all the resources in a pack and errors out of registration of a particular
 resource fails.
 
@@ -156,7 +156,7 @@ it doesn't fail if some action is missing tests.
 Usage:
 
 ```bash
-st2-check-print-pack-tests-coverage.sh <pack to pack root directory>
+st2-check-print-pack-tests-coverage <pack to pack root directory>
 ```
 
 ## Copyright, License, and Contributors Agreement
