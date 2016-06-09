@@ -51,6 +51,19 @@ or similar for each run.
 All of those scripts are also hooked up to our Travis CI system and run on
 every push to our st2contrib repository.
 
+For some examples on how to utilize this scripts, please refer to the Makefile
+in st2contrib repository - https://github.com/StackStorm/st2contrib/blob/master/Makefile
+
+As you may notice in the Makefile, we have some scripts and optimizations in
+place, so by default for Pull Request we only run scripts on changed files
+and / or pack. This is an important optimization because if we ran scripts for
+all the files and packs (even the ones which haven't been touched) this would
+substantially slow down the CI run time for a particular Pull Request and delay
+the time it takes for user to get feedback about their PR.
+
+In case you have a lot of custom packs in your repository, you might want to
+utilize similar approach.
+
 #### st2-check-validate-yaml-file
 
 This script verifies that a provided YAML file contains a valid syntax. It's
