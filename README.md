@@ -35,6 +35,98 @@ st2sdk bootstrap -i [pack name]
 In the interactive mode, the tool will ask you a couple of questions and the
 answers will be used to populate pack metadata and other files.
 
+### Check and Lint scripts
+
+This repository also contains various "check" and "lint" scripts which can be
+ran standalone or hooked up to your continuous integration system. Those
+scripts validate metadata file syntax, verify that pack contains pack.yaml
+file, etc.
+
+Some of those scripts require access to the database and network (e.g. PyPi to
+download pack dependencies, etc.) and they also manipulate the file system.
+You should make sure that you provide a clean environment on every invocation
+of those scripts. This can be achieved by using a fresh VM, docker container
+or similar for each run.
+
+All of those scripts are also hooked up to our Travis CI system and run on
+every push to our st2contrib repository.
+
+#### st2-validate-yaml-file.sh
+
+This script verifies that a provided YAML file contains a valid syntax. It's
+usually used with action metadata files and other YAML files.
+
+Usage:
+
+```bash
+st2-validate-yaml-file.sh <path to YAML file>
+```
+
+Keep in mind that this script just performs syntax and no semantic checks. If
+you want to confirm that your action or other metadata file is correct, you
+should also run ``register-pack-resources.sh`` script which tries to register
+all the resources in a pack and errors out of registration of a particular
+resource fails.
+
+#### st2-validate-json-file.sh
+
+This script verified that a provided JSON file contains a valid syntax. It's
+usually used with action metadata files and other YAML files.
+
+Usage:
+
+```bash
+st2-validate-json-file.sh <path to JSON file>
+```
+
+Keep in mind that this script just performs syntax and no semantic checks. If
+you want to confirm that your action or other metadata file is correct, you
+should also run ``register-pack-resources.sh`` script which tries to register
+all the resources in a pack and errors out of registration of a particular
+resource fails.
+
+#### st2-validate-pack-metadata-exists.sh
+
+This script verifies that a pack contains ``pack.yaml`` metadata file.
+
+Usage:
+
+```bash
+st2-validate-pack-metadata-exists.sh <pack to pack root directory>
+```
+
+#### st2-register-pack-resources.sh
+
+This script tries to register all the resources in a particular pack and fails
+if registering a particular resource fails.
+
+Usage:
+
+```bash
+st2-register-pack-resources.sh <pack to pack root directory>
+```
+
+This script requires access to a fresh database (MongoDB) on each run. In
+addition to that, it requires all the StackStorm components (st2actions,
+st2common, etc.) to be in ``PYTHONPATH``. You can achieve that by cloning st2
+repository in a particular directly (e.g. ``/tmp/st2``) and then setting
+``ST2_REPO_PATH`` environment variable to point to that directory when invoking
+the script.
+
+#### st2-print-pack-tests-coverage.sh
+
+This script prints a test coverage for a particular pack. It prints all the
+actions which contains tests and the ones which are missing it.
+
+Keep in mind that this script is for informational purposes only - right now
+it doesn't fail if some action is missing tests.
+
+Usage:
+
+```bash
+st2-print-pack-tests-coverage.sh <pack to pack root directory>
+```
+
 ## Copyright, License, and Contributors Agreement
 
 Copyright 2015 StackStorm, Inc.
