@@ -44,6 +44,7 @@ setup(
     name='st2sdk',
     version=get_version_string(),
     description='Various tools and utilities which aid with StackStorm pack development.',
+    long_description=open('README.rst').read(),
     author='StackStorm',
     author_email='info@stackstorm.com',
     url='http://www.stackstorm.com',
