@@ -18,7 +18,13 @@
 # Script which runs pylint on all the Python files in a particular pack.
 #
 
-source ./scripts/common.sh
+if hash greadlink 2>/dev/null; then
+    SCRIPT_PATH=$(dirname "$(greadlink -f "$0")")
+else
+    SCRIPT_PATH=$(dirname "$(readlink -f "$0")")
+fi
+
+source ${SCRIPT_PATH}/common.sh
 
 if [ $# -ne 1 ]; then
     echo "Usage: ${0} <path to pack directory>"
@@ -36,13 +42,6 @@ PACK_NAME=$(basename ${PACK_PATH})
 PACK_REQUIREMENTS_FILE="${PACK_PATH}/requirements.txt"
 PACK_TESTS_REQUIREMENTS_FILE="${PACK_PATH}/requirements-tests.txt"
 PYTHON_BINARY=`which python`
-
-if hash greadlink 2>/dev/null; then
-    SCRIPT_PATH=$( dirname "$(greadlink -f "$0")" )
-else
-    SCRIPT_PATH=$( dirname "$(readlink -f "$0")" )
-fi
-DIRECTORY_PATH=$(dirname ${SCRIPT_PATH})
 
 # Note: We assume this script is running inside a virtual environment into which we install the
 # the pack dependencies. This way pylint can also correctly introspect all the dependency,

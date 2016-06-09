@@ -19,7 +19,13 @@
 # fails (exits with non-zero) if registering a particular resource fails.
 #
 
-source ./scripts/common.sh
+if hash greadlink 2>/dev/null; then
+    SCRIPT_PATH=$(dirname "$(greadlink -f "$0")")
+else
+    SCRIPT_PATH=$(dirname "$(readlink -f "$0")")
+fi
+
+source ${SCRIPT_PATH}/common.sh
 
 if [ $# -ne 1 ]; then
     echo "Usage: ${0} <path to pack directory>"

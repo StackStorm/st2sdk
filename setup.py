@@ -68,6 +68,12 @@ setup(
         ]
     },
     scripts=[
+        # Common files, not binaries per say (ideally we would eventually install them to some
+        # other place)
+        'scripts/common.sh',
+        'scripts/st2.tests.conf',
+
+        # Scripts
         'scripts/st2-check-validate-yaml-file',
         'scripts/st2-check-validate-json-file',
         'scripts/st2-check-validate-pack-metadata-exists',
