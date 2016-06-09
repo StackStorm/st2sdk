@@ -113,7 +113,26 @@ repository in a particular directly (e.g. ``/tmp/st2``) and then setting
 ``ST2_REPO_PATH`` environment variable to point to that directory when invoking
 the script.
 
-#### st2-check-print-pack-tests-coverage.sh
+#### st2-check-pylint-pack
+
+This script runs ``pylint`` on all the Python files inside a particular pack.
+
+Usage:
+
+```bash
+st2-check-pylint-pack <pack to pack root directory>
+```
+
+This script installs packs regular and test requirements so it needs to run
+inside a virtual environment which is created for purpose of this script.
+
+Similar to ``st2-check-register-pack-resources`` this script also requires
+access to StackStorm code-base and st2 components. You can achieve that by
+cloning st2 repository in a particular directly (e.g. ``/tmp/st2``) and then
+setting ``ST2_REPO_PATH`` environment variable to point to that directory when
+invoking the script.
+
+#### st2-check-print-pack-tests-coverage
 
 This script prints a test coverage for a particular pack. It prints all the
 actions which contains tests and the ones which are missing it.
