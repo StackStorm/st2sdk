@@ -51,7 +51,7 @@ or similar for each run.
 All of those scripts are also hooked up to our Travis CI system and run on
 every push to our st2contrib repository.
 
-#### st2-validate-yaml-file.sh
+#### st2-check-validate-yaml-file
 
 This script verifies that a provided YAML file contains a valid syntax. It's
 usually used with action metadata files and other YAML files.
@@ -59,7 +59,7 @@ usually used with action metadata files and other YAML files.
 Usage:
 
 ```bash
-st2-validate-yaml-file.sh <path to YAML file>
+st2-check-validate-yaml-file <path to YAML file>
 ```
 
 Keep in mind that this script just performs syntax and no semantic checks. If
@@ -68,7 +68,7 @@ should also run ``register-pack-resources.sh`` script which tries to register
 all the resources in a pack and errors out of registration of a particular
 resource fails.
 
-#### st2-validate-json-file.sh
+#### st2-check-validate-json-file
 
 This script verified that a provided JSON file contains a valid syntax. It's
 usually used with action metadata files and other YAML files.
@@ -76,7 +76,7 @@ usually used with action metadata files and other YAML files.
 Usage:
 
 ```bash
-st2-validate-json-file.sh <path to JSON file>
+st2-check-validate-json-file <path to JSON file>
 ```
 
 Keep in mind that this script just performs syntax and no semantic checks. If
@@ -85,17 +85,17 @@ should also run ``register-pack-resources.sh`` script which tries to register
 all the resources in a pack and errors out of registration of a particular
 resource fails.
 
-#### st2-validate-pack-metadata-exists.sh
+#### st2-check-validate-pack-metadata-exists
 
 This script verifies that a pack contains ``pack.yaml`` metadata file.
 
 Usage:
 
 ```bash
-st2-validate-pack-metadata-exists.sh <pack to pack root directory>
+st2-check-validate-pack-metadata-exists <pack to pack root directory>
 ```
 
-#### st2-register-pack-resources.sh
+#### st2-check-register-pack-resources
 
 This script tries to register all the resources in a particular pack and fails
 if registering a particular resource fails.
@@ -103,7 +103,7 @@ if registering a particular resource fails.
 Usage:
 
 ```bash
-st2-register-pack-resources.sh <pack to pack root directory>
+st2-check-register-pack-resources <pack to pack root directory>
 ```
 
 This script requires access to a fresh database (MongoDB) on each run. In
@@ -113,7 +113,7 @@ repository in a particular directly (e.g. ``/tmp/st2``) and then setting
 ``ST2_REPO_PATH`` environment variable to point to that directory when invoking
 the script.
 
-#### st2-print-pack-tests-coverage.sh
+#### st2-check-print-pack-tests-coverage.sh
 
 This script prints a test coverage for a particular pack. It prints all the
 actions which contains tests and the ones which are missing it.
@@ -124,7 +124,7 @@ it doesn't fail if some action is missing tests.
 Usage:
 
 ```bash
-st2-print-pack-tests-coverage.sh <pack to pack root directory>
+st2-check-print-pack-tests-coverage.sh <pack to pack root directory>
 ```
 
 ## Copyright, License, and Contributors Agreement
