@@ -1,7 +1,7 @@
 StackStorm SDK
 ==============
 
-|Build Status|
+|Build Status| |Join our community Slack|
 
 This repository contains different utilities and tools which help with
 the StackStorm integration pack development.
@@ -171,19 +171,24 @@ Usage:
 
     st2-check-print-pack-tests-coverage <pack to pack root directory>
 
-## Copyright, License, and Contributors Agreement
+Copyright, License, and Contributors Agreement
+----------------------------------------------
 
 Copyright 2015 StackStorm, Inc.
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this work except in compliance with the License. You may obtain a copy of the
-License in the [LICENSE](LICENSE) file, or at:
+Licensed under the Apache License, Version 2.0 (the “License”); you may
+not use this work except in compliance with the License. You may obtain
+a copy of the License in the `LICENSE`_ file, or at:
 
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+http://www.apache.org/licenses/LICENSE-2.0
 
-By contributing you agree that these contributions are your own (or approved by
-your employer) and you grant a full, complete, irrevocable copyright license to
-all users and developers of the project, present and future, pursuant to the
-license of the project.
+By contributing you agree that these contributions are your own (or
+approved by your employer) and you grant a full, complete, irrevocable
+copyright license to all users and developers of the project, present
+and future, pursuant to the license of the project.
+
 .. |Build Status| image:: https://travis-ci.org/StackStorm/st2sdk.svg
    :target: https://travis-ci.org/StackStorm/st2sdk
+.. |Join our community Slack| image:: https://stackstorm-community.herokuapp.com/badge.svg
+   :target: https://stackstorm.typeform.com/to/K76GRP
+.. _LICENSE: LICENSE
