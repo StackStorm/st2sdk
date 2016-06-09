@@ -20,17 +20,17 @@
 
 ACTION_TEST_FILE_NAME_GLOB="test_action_*.py"
 
-if [ -n "${1}" ]; then
-    PACK=${1}
-else
-    echo "Need a pack "
+if [ $# -ne 1 ]; then
+    echo "Usage: ${0} <path to pack directory>"
     exit 1
 fi
 
-if [ ! -d ${PACK} ]; then
-    echo "Pack directory \"${PACK}\" not found"
+if [ $# -ne 1 ]; then
+    echo "Usage: ${0} <path to pack directory>"
     exit 1
 fi
+
+PACK=${1}
 
 echo -e "\n====== ${PACK} ======\n"
 
