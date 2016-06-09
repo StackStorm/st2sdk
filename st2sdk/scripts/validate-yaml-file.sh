@@ -15,10 +15,21 @@
 # limitations under the License.
 
 #
-# Script which validates the syntax in a YAML file.
+# Script which validates the syntax of a YAML file.
 #
-FILE=$1
 
-echo "Validating YAML syntax for file ${FILE}..."
-python -c "import yaml; yaml.safe_load(open('${FILE}', 'r'))"
+FILE_PATH=$1
+
+if [ $# -ne 1 ]; then
+    echo "Usage: ${0} <path to YAML file>"
+    exit 1
+fi
+
+if [ ! -f ${FILE_PATH} ]; then
+    echo "File \"${FILE_PATH}\" doesn't exist"
+    exit 2
+fi
+
+echo "Validating YAML syntax for file ${FILE_PATH}..."
+python -c "import yaml; yaml.safe_load(open('${FILE_PATH}', 'r'))"
 exit $?

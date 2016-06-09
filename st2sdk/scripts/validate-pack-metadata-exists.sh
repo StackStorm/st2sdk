@@ -15,17 +15,29 @@
 # limitations under the License.
 
 #
-# Script which validates that a pack contains metaata file (pack.yaml).
+# Script which validates that a pack contains metadata file (pack.yaml).
 #
+
+if [ $# -ne 1 ]; then
+    echo "Usage: ${0} <path to pack directory>"
+    exit 1
+fi
+
+if [ ! -d ${PACK_DIR} ]; then
+    echo "Pack directory \"${PACK_DIR}\" doesn't exist"
+    exit 2
+fi
 
 PACK_DIR=$1
 PACK_NAME=$(basename $PACK_DIR)
 
 if [ ${PACK_NAME} = "linux" ]; then
+    # Workaround for linux pack in st2contrib which only contains a redirect to a new
+    # location
     exit 0
 fi
 
 if [ ! -e "${PACK_DIR}/pack.yaml" ]; then
     echo "Pack "${pack}" is missing pack.yaml file"
-    exit 1
+    exit 3
 fi

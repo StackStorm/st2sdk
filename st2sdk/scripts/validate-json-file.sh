@@ -15,10 +15,21 @@
 # limitations under the License.
 
 #
-# Script which validates the syntax in a JSON file.
+# Script which validates the syntax of a JSON file.
 #
 
-FILE=$1
+FILE_PATH=$1
 
-echo "Validating JSON syntax for file ${FILE}..."
-python -mjson.tool ${FILE} > /dev/null
+if [ $# -ne 1 ]; then
+    echo "Usage: ${0} <path to JSON file>"
+    exit 1
+fi
+
+if [ ! -f ${FILE_PATH} ]; then
+    echo "File \"${FILE_PATH}\" doesn't exist"
+    exit 2
+fi
+
+
+echo "Validating JSON syntax for file ${FILE_PATH}..."
+python -mjson.tool ${FILE_PATH} > /dev/null

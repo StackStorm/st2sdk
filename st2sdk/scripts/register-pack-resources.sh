@@ -19,10 +19,20 @@
 # fails (exits with non-zero) if registering a particular resource fails.
 #
 
+source ./scripts/common.sh
+
+if [ $# -ne 1 ]; then
+    echo "Usage: ${0} <path to pack directory>"
+    exit 1
+fi
+
+if [ ! -d ${PACK_DIR} ]; then
+    echo "Pack directory \"${PACK_DIR}\" doesn't exist"
+    exit 2
+fi
+
 PACK_PATH=$1
 PACK_NAME=$(basename ${PACK_PATH})
-
-source ./scripts/common.sh
 
 ST2_REPO_PATH=${ST2_REPO_PATH:-/tmp/st2}
 ST2_COMPONENTS=$(get_st2_components)
