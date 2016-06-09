@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Licensed to the StackStorm, Inc ('StackStorm') under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -13,4 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-__version__ = '0.2.0'
+# File containing common utility functions
+
+function join()
+{
+    local IFS="$1"; shift; echo "$*";
+}
+
+function get_st2_components() {
+    local ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 0 -name "st2*" -type d)
+    echo "${ST2_COMPONENTS}"
+}

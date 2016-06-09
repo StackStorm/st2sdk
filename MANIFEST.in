@@ -1,0 +1,7 @@
+include LICENSE
+include requirements.txt
+include tox.ini
+
+# Files needed by scripts/
+include scripts/common.sh
+include scripts/st2.tests.conf

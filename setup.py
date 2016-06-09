@@ -43,7 +43,7 @@ def get_requirements():
 setup(
     name='st2sdk',
     version=get_version_string(),
-    description='CLI and tools which aid with StackStorm pack development.',
+    description='Various tools and utilities which aid with StackStorm pack development.',
     author='StackStorm',
     author_email='info@stackstorm.com',
     url='http://www.stackstorm.com',
@@ -66,5 +66,19 @@ setup(
         'console_scripts': [
             'st2sdk = st2sdk.shell:main'
         ]
-    }
+    },
+    scripts=[
+        # Common files, not binaries per say (ideally we would eventually install them to some
+        # other place)
+        'scripts/common.sh',
+        'scripts/st2.tests.conf',
+
+        # Scripts
+        'scripts/st2-check-validate-yaml-file',
+        'scripts/st2-check-validate-json-file',
+        'scripts/st2-check-validate-pack-metadata-exists',
+        'scripts/st2-check-register-pack-resources',
+        'scripts/st2-check-pylint-pack',
+        'scripts/st2-check-print-pack-tests-coverage'
+    ]
 )
