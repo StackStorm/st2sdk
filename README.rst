@@ -115,7 +115,7 @@ Usage:
 
 .. code:: bash
 
-    st2-check-validate-pack-metadata-exists <pack to pack root directory>
+    st2-check-validate-pack-metadata-exists <path to the pack root directory>
 
 st2-check-register-pack-resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -127,7 +127,7 @@ Usage:
 
 .. code:: bash
 
-    st2-check-register-pack-resources <pack to pack root directory>
+    st2-check-register-pack-resources <path to the pack root directory>
 
 This script requires access to a fresh database (MongoDB) on each run. In
 addition to that, it requires all the StackStorm components (st2actions,
@@ -145,7 +145,7 @@ Usage:
 
 .. code:: bash
 
-    st2-check-pylint-pack <pack to pack root directory>
+    st2-check-pylint-pack <path to the pack root directory>
 
 This script installs packs regular and test requirements so it needs to run
 inside a virtual environment which is created for purpose of this script.
@@ -169,7 +169,7 @@ Usage:
 
 .. code:: bash
 
-    st2-check-print-pack-tests-coverage <pack to pack root directory>
+    st2-check-print-pack-tests-coverage <path to the pack root directory>
 
 Copyright, License, and Contributors Agreement
 ----------------------------------------------
