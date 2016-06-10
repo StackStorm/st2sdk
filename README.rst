@@ -6,6 +6,21 @@ StackStorm SDK
 This repository contains different utilities and tools which help with
 the StackStorm integration pack development.
 
+Installation
+------------
+
+From PyPi (latest stable version):
+
+.. code:: bash
+
+    pip install st2sdk
+
+From git (latest in development version):
+
+.. code:: bash
+
+    pip install -e git+https://github.com/StackStorm/st2sdk.git@master#egg=st2sdk
+
 Tools
 -----
 
