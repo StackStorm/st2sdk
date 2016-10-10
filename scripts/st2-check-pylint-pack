@@ -69,10 +69,10 @@ if [ "${PYTHON_FILE_COUNT}" == "0" ]; then
 fi
 
 # Install per-pack dependencies
-pip install --cache-dir ${HOME}/.pip-cache -q -r requirements-dev.txt
+pip install --cache-dir ${HOME}/.pip-cache -q -r ${REQUIREMENTS_DIR}requirements-dev.txt
 
 # Install test dependencies
-pip install --cache-dir ${HOME}/.pip-cache -q -r requirements-pack-tests.txt
+pip install --cache-dir ${HOME}/.pip-cache -q -r ${REQUIREMENTS_DIR}requirements-pack-tests.txt
 
 # Install pack dependencies
 if [ -f ${PACK_REQUIREMENTS_FILE} ]; then
