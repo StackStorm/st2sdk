@@ -16,8 +16,7 @@
 
 # File containing common utility functions
 
-function join()
-{
+function join() {
     local IFS="$1"; shift; echo "$*";
 }
 

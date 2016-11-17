@@ -80,6 +80,7 @@ setup(
         'scripts/st2-check-validate-pack-metadata-exists',
         'scripts/st2-check-register-pack-resources',
         'scripts/st2-check-pylint-pack',
-        'scripts/st2-check-print-pack-tests-coverage'
+        'scripts/st2-check-print-pack-tests-coverage',
+        'scripts/st2-check-validate-pack-example-config'
     ]
 )
