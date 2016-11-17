@@ -33,8 +33,8 @@ PACK_NAME=$(basename $PACK_DIR)
 
 VALIDATE_SCRIPT_PATH="${ST2_REPO_PATH}/st2common/bin/st2-validate-pack-config"
 
-CONFIG_SCHEMA_FILE=$(find ${PACK_DIR}/config.schema.yaml)
-EXAMPLE_CONFIG_FILE=$(find ${PACK_DIR}/*.yaml.example)
+CONFIG_SCHEMA_FILE=$(find ${PACK_DIR}/config.schema.yaml 2> /dev/null)
+EXAMPLE_CONFIG_FILE=$(find ${PACK_DIR}/*.yaml.example 2> /dev/null)
 
 if [ -z ${CONFIG_SCHEMA_FILE} ]; then
     echo "Pack ${PACK_NAME} doesn't contain config.schema.yaml file"
