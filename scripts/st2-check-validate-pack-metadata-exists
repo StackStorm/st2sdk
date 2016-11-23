@@ -23,13 +23,13 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+PACK_DIR=$1
+PACK_NAME=$(basename $PACK_DIR)
+
 if [ ! -d ${PACK_DIR} ]; then
     echo "Pack directory \"${PACK_DIR}\" doesn't exist"
     exit 2
 fi
-
-PACK_DIR=$1
-PACK_NAME=$(basename $PACK_DIR)
 
 if [ ${PACK_NAME} = "linux" ]; then
     # Workaround for linux pack in st2contrib which only contains a redirect to a new
@@ -38,6 +38,6 @@ if [ ${PACK_NAME} = "linux" ]; then
 fi
 
 if [ ! -e "${PACK_DIR}/pack.yaml" ]; then
-    echo "Pack "${pack}" is missing pack.yaml file"
+    echo "Pack "${PACK_NAME}" is missing pack.yaml file"
     exit 3
 fi
