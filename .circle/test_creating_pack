@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Creating a test pack using st2sdk
+st2sdk bootstrap test_pack
+cd test_pack
+
+# Registering dummy remote repository to pass the verification check
+git init
+git remote add origin git@github.com:StackStorm/st2sdk.git
+
+# Checking the created pack is valid as with other stackstorm-exchange's one
+~/ci/.circle/test
