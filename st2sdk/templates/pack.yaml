@@ -1,5 +1,6 @@
 ---
 name: {{ pack_name }}
+ref: {{ pack_name }}
 description: ''
 version: 0.1.0
 author: {{ author_name }}
