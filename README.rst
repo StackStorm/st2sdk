@@ -202,8 +202,8 @@ approved by your employer) and you grant a full, complete, irrevocable
 copyright license to all users and developers of the project, present
 and future, pursuant to the license of the project.
 
-.. |Build Status| image:: https://travis-ci.org/StackStorm/st2sdk.svg
-   :target: https://travis-ci.org/StackStorm/st2sdk
+.. |Build Status| image:: https://circleci.com/gh/StackStorm/st2sdk/tree/master.svg?style=shield
+   :target: https://circleci.com/gh/StackStorm/st2sdk
 .. |Join our community Slack| image:: https://stackstorm-community.herokuapp.com/badge.svg
    :target: https://stackstorm.typeform.com/to/K76GRP
 .. _LICENSE: LICENSE
