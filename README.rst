@@ -205,5 +205,5 @@ and future, pursuant to the license of the project.
 .. |Build Status| image:: https://circleci.com/gh/StackStorm/st2sdk/tree/master.svg?style=shield
    :target: https://circleci.com/gh/StackStorm/st2sdk
 .. |Join our community Slack| image:: https://stackstorm-community.herokuapp.com/badge.svg
-   :target: https://stackstorm.typeform.com/to/K76GRP
+   :target: https://stackstorm.com/community-signup
 .. _LICENSE: LICENSE
