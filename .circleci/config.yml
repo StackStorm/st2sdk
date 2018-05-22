@@ -16,7 +16,7 @@ jobs:
           name: Install dependencies
           command: |
             git clone -b master git@github.com:stackstorm-exchange/ci.git ~/ci
-            pip install tox
+            sudo pip install tox
             ~/ci/.circle/dependencies
       - run:
           name: Compile
