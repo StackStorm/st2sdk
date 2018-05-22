@@ -20,7 +20,7 @@ jobs:
             ~/ci/.circle/dependencies
       - run:
           name: Compile
-          command: python setup.py install
+          command: sudo python setup.py install
       - save_cache:
           key: v1-dependency-cache-{{ checksum "requirements.txt" }}
           paths:
