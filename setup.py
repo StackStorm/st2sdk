@@ -16,6 +16,7 @@
 
 import os
 import sys
+import io
 
 from setuptools import setup, find_packages
 
@@ -44,7 +45,7 @@ setup(
     name='st2sdk',
     version=get_version_string(),
     description='Various tools and utilities which aid with StackStorm pack development.',
-    long_description=open('README.rst').read(),
+    long_description=io.open('README.rst', encoding='utf-8').read(),
     author='StackStorm',
     author_email='info@stackstorm.com',
     url='http://www.stackstorm.com',
