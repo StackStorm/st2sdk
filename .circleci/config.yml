@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  build_and_test:
+  build_and_test_py27:
     docker:
       - image: circleci/python:2.7
       - image: rabbitmq:3
@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-dependency-cache-{{ checksum "requirements.txt" }}
+          key: v1-dependency-cache-py2-{{ checksum "requirements.txt" }}
       - run:
           name: Install dependencies
           command: |
@@ -22,18 +22,51 @@ jobs:
           name: Compile
           command: sudo python setup.py install
       - save_cache:
-          key: v1-dependency-cache-{{ checksum "requirements.txt" }}
+          key: v1-dependency-cache-py2-{{ checksum "requirements.txt" }}
           paths:
             - ~/.cache/pip
             - ~/.apt-cache
       - run:
           name: Test
           command: |
-            tox -vvv
+            tox -vvv -e py27-sdist,py27
+            .circle/test_creating_pack
+
+
+  build_and_test_py36:
+    docker:
+      - image: circleci/python:3.6
+      - image: rabbitmq:3
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-dependency-cache-py3-{{ checksum "requirements.txt" }}
+      - run:
+          name: Install dependencies
+          command: |
+            git clone -b master git@github.com:stackstorm-exchange/ci.git ~/ci
+            sudo pip install tox
+            ~/ci/.circle/dependencies
+      - run:
+          name: Compile
+          command: sudo python setup.py install
+      - save_cache:
+          key: v1-dependency-cache-py3-{{ checksum "requirements.txt" }}
+          paths:
+            - ~/.cache/pip
+            - ~/.apt-cache
+      - run:
+          name: Test
+          command: |
+            tox -vvv -e py36-sdist,py36
             .circle/test_creating_pack
 
 workflows:
   version: 2
   build_test:
     jobs:
-      - build_and_test
+      - build_and_test_py27
+      - build_and_test_py36
