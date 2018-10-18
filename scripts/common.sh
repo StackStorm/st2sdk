@@ -22,5 +22,7 @@ function join() {
 
 function get_st2_components() {
     local ST2_COMPONENTS=$(find ${ST2_REPO_PATH}/* -maxdepth 0 -name "st2*" -type d)
+    local ST2_COMPONENTS_RUNNERS=$(find ${ST2_REPO_PATH}/contrib/runners/* -maxdepth 0 -type d)
     echo "${ST2_COMPONENTS}"
+    echo "${ST2_COMPONENTS_RUNNERS}"
 }
