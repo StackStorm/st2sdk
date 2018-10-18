@@ -64,6 +64,7 @@ pip install --cache-dir ${HOME}/.pip-cache -q -r ${ST2_REPO_PATH}/requirements.t
 # Set PYTHONPATH to include st2 components
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 
+echo "PYTHONPATH=${PYTHONPATH}"
 echo "Registering content from pack ${PACK_NAME}"
 echo "Running script: ${REGISTER_SCRIPT_PATH} ${REGISTER_SCRIPT_COMMON_FLAGS} ${REGISTER_SCRIPT_REGISTER_FLAGS} --register-pack=${PACK_DIR}"
 ${REGISTER_SCRIPT_PATH} ${REGISTER_SCRIPT_COMMON_FLAGS} ${REGISTER_SCRIPT_REGISTER_FLAGS} --register-pack=${PACK_DIR}
