@@ -25,6 +25,8 @@ else
     SCRIPT_PATH=$(dirname "$(readlink -f "$0")")
 fi
 
+PYTHON_BINARY=$(which python)
+
 source ${SCRIPT_PATH}/common.sh
 
 if [ $# -ne 1 ]; then
@@ -65,8 +67,8 @@ pip install --cache-dir ${HOME}/.pip-cache -q -r ${ST2_REPO_PATH}/requirements.t
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 
 echo "Registering content from pack ${PACK_NAME}"
-echo "Running script: ${REGISTER_SCRIPT_PATH} ${REGISTER_SCRIPT_COMMON_FLAGS} ${REGISTER_SCRIPT_REGISTER_FLAGS} --register-pack=${PACK_DIR}"
-${REGISTER_SCRIPT_PATH} ${REGISTER_SCRIPT_COMMON_FLAGS} ${REGISTER_SCRIPT_REGISTER_FLAGS} --register-pack=${PACK_DIR}
+echo "Running script: ${PYTHON_BINARY} ${REGISTER_SCRIPT_PATH} ${REGISTER_SCRIPT_COMMON_FLAGS} ${REGISTER_SCRIPT_REGISTER_FLAGS} --register-pack=${PACK_DIR}"
+${PYTHON_BINARY} ${REGISTER_SCRIPT_PATH} ${REGISTER_SCRIPT_COMMON_FLAGS} ${REGISTER_SCRIPT_REGISTER_FLAGS} --register-pack=${PACK_DIR}
 EXIT_CODE=$?
 
 if [ ${EXIT_CODE} -ne 0 ]; then
