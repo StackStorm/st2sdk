@@ -7,6 +7,7 @@ cd test_pack
 # Registering dummy remote repository to pass the verification check
 git init
 git remote add origin git@github.com:StackStorm/st2sdk.git
+git fetch --origin
 
 # Checking the created pack is valid as with other stackstorm-exchange's one
-~/ci/.circle/test
+FORCE_CHECK_ALL_FILES=true ~/ci/.circle/test
