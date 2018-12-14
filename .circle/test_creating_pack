@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CURRENT_DIR="$(dirname "$0")"
+CURRENT_DIR="$(pwd)"
 
 # Creating a test pack using st2sdk
 st2sdk bootstrap test_pack
