@@ -17,6 +17,7 @@ jobs:
           command: |
             git clone -b master git@github.com:stackstorm-exchange/ci.git ~/ci
             sudo pip install tox
+            ~/ci/.circle/dependencies
       - run:
           name: Compile
           command: sudo python setup.py install
@@ -48,6 +49,7 @@ jobs:
           command: |
             git clone -b master git@github.com:stackstorm-exchange/ci.git ~/ci
             sudo pip install tox
+            ~/ci/.circle/dependencies
       - run:
           name: Compile
           command: sudo python setup.py install
