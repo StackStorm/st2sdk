@@ -12,4 +12,4 @@ git remote add origin git@github.com:StackStorm/st2sdk.git
 git fetch origin
 
 # Checking the created pack is valid as with other stackstorm-exchange's one
-ROOT_DIR="${CURRENT_DIR}/test_pack" FORCE_CHECK_ALL_FILES=true ~/ci/.circle/test
+FORCE_CHECK_ALL_FILES=true ~/ci/.circle/test
