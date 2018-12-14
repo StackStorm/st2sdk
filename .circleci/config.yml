@@ -15,6 +15,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            git clone -b master git@github.com:stackstorm-exchange/ci.git ~/ci
             sudo pip install tox
       - run:
           name: Compile
@@ -45,6 +46,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            git clone -b master git@github.com:stackstorm-exchange/ci.git ~/ci
             sudo pip install tox
       - run:
           name: Compile
