@@ -24,6 +24,8 @@ else
     SCRIPT_PATH=$(dirname "$(readlink -f "$0")")
 fi
 
+PYTHON_BINARY=$(which python)
+
 source ${SCRIPT_PATH}/common.sh
 
 
@@ -68,7 +70,7 @@ if [ -z ${EXAMPLE_CONFIG_FILE} ]; then
     exit 0
 else
     echo "Validating example config ${EXAMPLE_CONFIG_FILE} for pack ${PACK_NAME}..."
-    ${VALIDATE_SCRIPT_PATH} --schema-path ${CONFIG_SCHEMA_FILE} --config-path ${EXAMPLE_CONFIG_FILE}
+    ${PYTHON_BINARY} ${VALIDATE_SCRIPT_PATH} --schema-path ${CONFIG_SCHEMA_FILE} --config-path ${EXAMPLE_CONFIG_FILE}
     EXIT_CODE=$?
     exit ${EXIT_CODE}
 fi
