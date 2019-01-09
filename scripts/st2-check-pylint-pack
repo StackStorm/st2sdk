@@ -76,11 +76,13 @@ pip install --cache-dir ${HOME}/.pip-cache -q -r ${REQUIREMENTS_DIR}requirements
 
 # Install pack dependencies
 if [ -f ${PACK_REQUIREMENTS_FILE} ]; then
+    echo "Installing pack requirements from ${PACK_REQUIREMENTS_FILE}..."
     pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_REQUIREMENTS_FILE}
 fi
 
 # Install pack test dependencies (if any)
 if [ -f ${PACK_TESTS_REQUIREMENTS_FILE} ]; then
+    echo "Installing pack test requirements from ${PACK_TESTS_REQUIREMENTS_FILE}..."
     pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_TESTS_REQUIREMENTS_FILE}
 fi
 
