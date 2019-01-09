@@ -88,8 +88,8 @@ fi
 
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
 
-#echo "PYTHONPATH=${PYTHONPATH}"
-#echo "PYTHON_BINARY=${PYTHON_BINARY}"
+echo "PYTHONPATH=${PYTHONPATH}"
+echo "PYTHON_BINARY=${PYTHON_BINARY}"
 
 if [ -d ${PACK_DIR}/actions ]; then
     ACTION_PYTHON_FILES_COUNT=$(find ${PACK_DIR}/actions -name "*.py" -printf "." -print0 | wc -c)
