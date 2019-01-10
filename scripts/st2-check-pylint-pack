@@ -31,6 +31,10 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+# If "1" it will be assumed various dependencies are already installed and won't
+# be installed again (e.g. when running on StackStorm Exchange Circle CI)
+ST2_INSTALL_DEPS=${ST2_INSTALL_DEPS:-1}
+
 PACK_DIR=$1
 PACK_NAME=$(basename ${PACK_DIR})
 
@@ -68,22 +72,24 @@ if [ "${PYTHON_FILE_COUNT}" == "0" ]; then
     exit 0
 fi
 
-# Install per-pack dependencies
-pip install --cache-dir ${HOME}/.pip-cache -q -r ${REQUIREMENTS_DIR}requirements-dev.txt
+if [ "${ST2_INSTALL_DEPS}" = "1" ]; then
+    # Install per-pack dependencies
+    pip install --cache-dir ${HOME}/.pip-cache -q -r ${REQUIREMENTS_DIR}requirements-dev.txt
 
-# Install test dependencies
-pip install --cache-dir ${HOME}/.pip-cache -q -r ${REQUIREMENTS_DIR}requirements-pack-tests.txt
+    # Install test dependencies
+    pip install --cache-dir ${HOME}/.pip-cache -q -r ${REQUIREMENTS_DIR}requirements-pack-tests.txt
 
-# Install pack dependencies
-if [ -f ${PACK_REQUIREMENTS_FILE} ]; then
-    echo "Installing pack requirements from ${PACK_REQUIREMENTS_FILE}..."
-    pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_REQUIREMENTS_FILE}
-fi
+    # Install pack dependencies
+    if [ -f ${PACK_REQUIREMENTS_FILE} ]; then
+        echo "Installing pack requirements from ${PACK_REQUIREMENTS_FILE}..."
+        pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_REQUIREMENTS_FILE}
+    fi
 
-# Install pack test dependencies (if any)
-if [ -f ${PACK_TESTS_REQUIREMENTS_FILE} ]; then
-    echo "Installing pack test requirements from ${PACK_TESTS_REQUIREMENTS_FILE}..."
-    pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_TESTS_REQUIREMENTS_FILE}
+    # Install pack test dependencies (if any)
+    if [ -f ${PACK_TESTS_REQUIREMENTS_FILE} ]; then
+        echo "Installing pack test requirements from ${PACK_TESTS_REQUIREMENTS_FILE}..."
+        pip install --cache-dir ${HOME}/.pip-cache -q -r ${PACK_TESTS_REQUIREMENTS_FILE}
+    fi
 fi
 
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}

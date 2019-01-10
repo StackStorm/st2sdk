@@ -34,6 +34,10 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+# If "1" it will be assumed various dependencies are already installed and won't
+# be installed again (e.g. when running on StackStorm Exchange Circle CI)
+ST2_INSTALL_DEPS=${ST2_INSTALL_DEPS:-1}
+
 PACK_DIR=$1
 PACK_NAME=${PACK_NAME:-$(basename ${PACK_DIR})}
 ST2_CONFIG_FILE=${ST2_CONFIG_FILE:-${SCRIPT_PATH}/st2.tests.conf}
@@ -60,8 +64,10 @@ else
     REGISTER_SCRIPT_REGISTER_FLAGS="--register-all"
 fi
 
-# Install st2 dependencies
-pip install --cache-dir ${HOME}/.pip-cache -q -r ${ST2_REPO_PATH}/requirements.txt
+if [ "${ST2_INSTALL_DEPS}" = "1" ]; then
+    # Install st2 dependencies
+    pip install --cache-dir ${HOME}/.pip-cache -q -r ${ST2_REPO_PATH}/requirements.txt
+fi
 
 # Set PYTHONPATH to include st2 components
 export PYTHONPATH=${PACK_PYTHONPATH}:${PYTHONPATH}
