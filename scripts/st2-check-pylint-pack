@@ -56,7 +56,8 @@ fi
 
 ST2_REPO_PATH=${ST2_REPO_PATH:-/tmp/st2}
 ST2_COMPONENTS=$(get_st2_components)
-PACK_PYTHONPATH=$(join ":" ${ST2_COMPONENTS})
+# Add in actions/lib directory to account for "packs.enable_common_libs" config option
+PACK_PYTHONPATH="$(join ":" ${ST2_COMPONENTS}):${PACK_DIR}/actions/lib"
 
 echo "Running pylint on pack: ${PACK_NAME}"
 
