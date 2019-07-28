@@ -2,14 +2,16 @@
 
 CURRENT_DIR="$(pwd)"
 PACK_DIR="${CURRENT_DIR}/test_pack"
+ST2SDK=$(which st2sdk)
 
 # Creating a test pack using st2sdk
+echo "Using st2sdk: ${ST2SDK}"
 st2sdk bootstrap test_pack
 cd test_pack
 
 # Registering dummy remote repository to pass the verification check
 git init
-git remote add origin git@github.com:StackStorm/st2sdk.git
+git remote add origin https://github.com/StackStorm/st2sdk.git
 git fetch origin
 
 # Checking the created pack is valid as with other stackstorm-exchange's one
