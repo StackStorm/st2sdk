@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-dependency-cache-py2-{{ checksum "requirements.txt" }}
+          key: v11-dependency-cache-py2-{{ checksum "requirements.txt" }}
       - run:
           name: Install dependencies
           command: |
@@ -26,7 +26,7 @@ jobs:
           name: Compile
           command: sudo python setup.py install
       - save_cache:
-          key: v1-dependency-cache-py2-{{ checksum "requirements.txt" }}
+          key: v11-dependency-cache-py2-{{ checksum "requirements.txt" }}
           paths:
             - ~/.cache/pip
             - ~/.apt-cache
@@ -51,7 +51,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-dependency-cache-py3-{{ checksum "requirements.txt" }}
+          key: v11-dependency-cache-py3-{{ checksum "requirements.txt" }}
       - run:
           name: Install dependencies
           command: |
@@ -62,7 +62,7 @@ jobs:
           name: Compile
           command: sudo python setup.py install
       - save_cache:
-          key: v1-dependency-cache-py3-{{ checksum "requirements.txt" }}
+          key: v11-dependency-cache-py3-{{ checksum "requirements.txt" }}
           paths:
             - ~/.cache/pip
             - ~/.apt-cache
