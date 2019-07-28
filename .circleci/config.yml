@@ -34,7 +34,7 @@ jobs:
           name: Test
           command: |
             tox -vvv -e py27-sdist,py27
-            PATH=.tox/py27-sdist/bin/:$PATH.circle/test_creating_pack
+            PATH=.tox/py27-sdist/bin:$PATH.circle/test_creating_pack
 
 
   build_and_test_py36:
@@ -70,7 +70,7 @@ jobs:
           name: Test
           command: |
             tox -vvv -e py36-sdist,py36
-            PATH=.tox/py36-sdist/bin/:$PATH .circle/test_creating_pack
+            PATH=.tox/py36-sdist/bin:$PATH .circle/test_creating_pack
 
 workflows:
   version: 2
