@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-dependency-cache-py2-{{ checksum "requirements.txt" }}
+          key: v11-dependency-cache-py2-{{ checksum "requirements.txt" }}
       - run:
           name: Install dependencies
           command: |
@@ -24,9 +24,9 @@ jobs:
             ~/ci/.circle/dependencies
       - run:
           name: Compile
-          command: sudo python setup.py install
+          command: sudo python setup.py install ; sudo pip uninstall -y st2sdk
       - save_cache:
-          key: v1-dependency-cache-py2-{{ checksum "requirements.txt" }}
+          key: v11-dependency-cache-py2-{{ checksum "requirements.txt" }}
           paths:
             - ~/.cache/pip
             - ~/.apt-cache
@@ -34,7 +34,7 @@ jobs:
           name: Test
           command: |
             tox -vvv -e py27-sdist,py27
-            .circle/test_creating_pack
+            PATH=.tox/py27-sdist/bin:$PATH.circle/test_creating_pack
 
 
   build_and_test_py36:
@@ -51,7 +51,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-dependency-cache-py3-{{ checksum "requirements.txt" }}
+          key: v11-dependency-cache-py3-{{ checksum "requirements.txt" }}
       - run:
           name: Install dependencies
           command: |
@@ -60,9 +60,9 @@ jobs:
             ~/ci/.circle/dependencies
       - run:
           name: Compile
-          command: sudo python setup.py install
+          command: sudo python setup.py install ; sudo pip uninstall -y st2sdk
       - save_cache:
-          key: v1-dependency-cache-py3-{{ checksum "requirements.txt" }}
+          key: v11-dependency-cache-py3-{{ checksum "requirements.txt" }}
           paths:
             - ~/.cache/pip
             - ~/.apt-cache
@@ -70,7 +70,7 @@ jobs:
           name: Test
           command: |
             tox -vvv -e py36-sdist,py36
-            .circle/test_creating_pack
+            PATH=.tox/py36-sdist/bin:$PATH .circle/test_creating_pack
 
 workflows:
   version: 2

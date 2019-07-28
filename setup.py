@@ -18,6 +18,7 @@ import os
 import sys
 import io
 
+import six
 from setuptools import setup, find_packages
 
 
@@ -38,6 +39,14 @@ def get_version_string():
 def get_requirements():
     with open(PKG_REQ_FILE) as f:
         required = f.read().splitlines()
+
+    # NOTE: We use latest version under Python 3
+    required = [l for l in required if not l.startswith('cmd2')]
+    if six.PY2:
+        required.append('cmd2>=0.8.9,<0.9')
+    else:
+        required.append('cmd2>=0.9.i5,<0.10')
+
     return required
 
 
