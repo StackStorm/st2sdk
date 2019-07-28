@@ -24,7 +24,7 @@ jobs:
             ~/ci/.circle/dependencies
       - run:
           name: Compile
-          command: sudo python setup.py install
+          command: sudo python setup.py install ; pip uninstall st2sdk
       - save_cache:
           key: v11-dependency-cache-py2-{{ checksum "requirements.txt" }}
           paths:
@@ -60,7 +60,7 @@ jobs:
             ~/ci/.circle/dependencies
       - run:
           name: Compile
-          command: sudo python setup.py install
+          command: sudo python setup.py install ; pip uninstall st2sdk
       - save_cache:
           key: v11-dependency-cache-py3-{{ checksum "requirements.txt" }}
           paths:
