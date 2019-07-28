@@ -15,12 +15,13 @@
 
 import os
 
+import argparse
 import logging
 import logging.config
 
 import six
+import cmd2
 from cmd2 import Cmd
-from cmd2 import options, make_option
 from jinja2 import Environment, FileSystemLoader
 
 __all__ = [
@@ -59,16 +60,24 @@ FILE_TEMPLATES = [
 ]
 
 
+bootstrap_parser = argparse.ArgumentParser()
+bootstrap_parser.add_argument('pack_name', help='Pack name')
+bootstrap_parser.add_argument('-i', '--interactive',
+                              action='store_true',
+                              default=False,
+                              help='Run in an interactive mode')
+
+
 class SDKApp(Cmd):
     into = 'Welcome to st2sdk'
     prompt = '(st2sdk): '
 
-    @options([make_option('-i', '--interactive', action='store_true',
-                          help='Run in an interactive mode')])
-    def do_bootstrap(self, pack_name, opts=None):
+    @cmd2.with_argparser(bootstrap_parser)
+    def do_bootstrap(self, args):
+        pack_name = args.pack_name
         self._setup_logging()
 
-        if opts.interactive:
+        if args.interactive:
             data = self._gather_input(pack_name=pack_name)
         else:
             data = {
