@@ -189,7 +189,7 @@ Usage:
 Copyright, License, and Contributors Agreement
 ----------------------------------------------
 
-Copyright 2015 StackStorm, Inc.
+Copyright 2019 StackStorm, Inc.
 
 Licensed under the Apache License, Version 2.0 (the “License”); you may
 not use this work except in compliance with the License. You may obtain
