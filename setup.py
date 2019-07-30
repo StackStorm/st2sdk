@@ -18,7 +18,6 @@ import os
 import sys
 import io
 
-import six
 from setuptools import setup, find_packages
 
 
@@ -42,7 +41,9 @@ def get_requirements():
 
     # NOTE: We use latest version under Python 3
     required = [l for l in required if not l.startswith('cmd2')]
-    if six.PY2:
+    # same as six.PY2, but we can't use six in setup.py  because it isn't
+    # garaunteed to be in a fresh virtualenv before installing this package
+    if sys.version_info[0] == 2:
         required.append('cmd2>=0.8.9,<0.9')
     else:
         required.append('cmd2>=0.9.i5,<0.10')
