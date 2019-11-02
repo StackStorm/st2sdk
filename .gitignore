@@ -3,3 +3,4 @@
 *.pyc
 build/
 dist/
+pack_name/
