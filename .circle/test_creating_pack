@@ -6,7 +6,7 @@ ST2SDK=$(which st2sdk)
 
 # Creating a test pack using st2sdk
 echo "Using st2sdk: ${ST2SDK}"
-st2sdk bootstrap test_pack
+st2sdk bootstrap test_pack --add-license
 cd test_pack
 
 ls -la .
