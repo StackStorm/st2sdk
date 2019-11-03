@@ -15,6 +15,7 @@
 
 import os
 
+import shutil
 import argparse
 import logging
 import logging.config
@@ -28,9 +29,11 @@ __all__ = [
     'SDKApp'
 ]
 
+LOG = logging.getLogger(__name__)
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-LOG = logging.getLogger(__name__)
+LICENSE_PATH = os.path.abspath(os.path.join(TEMPLATES_DIR, 'LICENSE'))
 
 COMMAND_HELP = {
     'bootstrap': [
@@ -66,6 +69,10 @@ bootstrap_parser.add_argument('-i', '--interactive',
                               action='store_true',
                               default=False,
                               help='Run in an interactive mode')
+bootstrap_parser.add_argument('-l', '--add-license',
+                              action='store_true',
+                              default=False,
+                              help='Copy Apache 2.0 LICENSE file to the pack directory')
 
 
 class SDKApp(Cmd):
@@ -75,6 +82,7 @@ class SDKApp(Cmd):
     @cmd2.with_argparser(bootstrap_parser)
     def do_bootstrap(self, args):
         pack_name = args.pack_name
+        add_license = args.add_license
         self._setup_logging()
 
         if args.interactive:
@@ -89,7 +97,7 @@ class SDKApp(Cmd):
         if not data['pack_name']:
             raise ValueError('Pack name is required')
 
-        self._handle_bootstrap(data=data)
+        self._handle_bootstrap(data=data, add_license=add_license)
 
     def help_bootstrap(self):
         help_string = COMMAND_HELP['bootstrap']
@@ -120,7 +128,7 @@ class SDKApp(Cmd):
         context = {}
         return context
 
-    def _handle_bootstrap(self, data):
+    def _handle_bootstrap(self, data, add_license=False):
         cwd = os.getcwd()
         pack_name = data['pack_name']
         pack_path = os.path.join(cwd, pack_name)
@@ -135,6 +143,10 @@ class SDKApp(Cmd):
         # 2. Copy over and render the file templates
         context = data
         self._render_and_write_templates(pack_path=pack_path, context=context)
+
+        # 3. Copy over license file (if specified)
+        if add_license:
+            shutil.copyfile(LICENSE_PATH, os.path.join(pack_path, 'LICENSE'))
 
         LOG.info('Pack "%s" created in %s' % (pack_name, pack_path))
 
