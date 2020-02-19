@@ -105,7 +105,7 @@ else
 fi
 
 if [ ${ACTION_PYTHON_FILES_COUNT} -gt 0 ]; then
-    find ${PACK_DIR}/actions -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=${CONFIG_DIR:-./lint-configs/}python/.pylintrc && echo "--> No pylint issues found in actions." || exit $?
+    find ${PACK_DIR}/actions -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=${CONFIG_DIR:-./lint-configs/}python/.pylintrc-exchange && echo "--> No pylint issues found in actions." || exit $?
 fi
 
 if [ -d ${PACK_DIR}/sensors ]; then
@@ -115,7 +115,7 @@ else
 fi
 
 if [ ${SENSOR_PYTHON_FILES_COUNT} -gt 0 ]; then
-    find ${PACK_DIR}/sensors -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=${CONFIG_DIR:-./lint-configs/}python/.pylintrc && echo "--> No pylint issues found in sensors." || exit $?
+    find ${PACK_DIR}/sensors -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=${CONFIG_DIR:-./lint-configs/}python/.pylintrc-exchange && echo "--> No pylint issues found in sensors." || exit $?
 fi
 
 if [ -d ${PACK_DIR}/etc ]; then
@@ -125,5 +125,5 @@ else
 fi
 
 if [ ${ETC_PYTHON_FILES_COUNT} -gt 0 ]; then
-    find ${PACK_DIR}/etc -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=${CONFIG_DIR:-./lint-configs/}python/.pylintrc && echo "--> No pylint issues found in etc." || exit $?
+    find ${PACK_DIR}/etc -name "*.py" -print0 | xargs -0 ${PYTHON_BINARY} -m pylint -E --rcfile=${CONFIG_DIR:-./lint-configs/}python/.pylintrc-exchange && echo "--> No pylint issues found in etc." || exit $?
 fi
