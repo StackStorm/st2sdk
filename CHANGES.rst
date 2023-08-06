@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.6.0 - 6 August 2022
+-------------------------
+
+* Update cmd2 version to v0.9.15 or greater for Python3.8 support.
+
 v0.5.2 - November 2, 2019
 -------------------------
 

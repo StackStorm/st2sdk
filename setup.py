@@ -46,7 +46,7 @@ def get_requirements():
     if sys.version_info[0] == 2:
         required.append('cmd2>=0.8.9,<0.9')
     else:
-        required.append('cmd2>=0.9.i5,<0.10')
+        required.append('cmd2>=0.9.15,<0.10')
 
     return required
 
@@ -70,9 +70,9 @@ setup(
         'License :: OSI Approved :: Apache Software License',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7'
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.8'
     ],
     entry_points={
         'console_scripts': [
